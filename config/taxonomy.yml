@@ -1,0 +1,53 @@
+ecommerce:
+  Livraison:
+    keywords: [livraison, retard, colis, transporteur, commande, reçu, délai]
+    severity: 5
+    action: Auditer les transporteurs et renforcer le suivi proactif des commandes.
+  Remboursement:
+    keywords: [remboursement, remboursé, argent, retour, attendre, facture]
+    severity: 4
+    action: Réduire les délais de remboursement et clarifier les étapes de retour.
+  Support:
+    keywords: [support, service client, réponse, conseiller, contact, aide]
+    severity: 4
+    action: Améliorer le délai de réponse et prioriser les tickets sensibles.
+  Produit:
+    keywords: [qualité, cassé, abîmé, taille, défaut, produit]
+    severity: 3
+    action: Renforcer le contrôle qualité et améliorer les fiches produit.
+
+saas:
+  Onboarding:
+    keywords: [onboarding, démarrage, configuration, paramétrage, activation, tutoriel]
+    severity: 5
+    action: Simplifier le parcours d’activation et ajouter des guides contextuels.
+  Bugs:
+    keywords: [bug, erreur, crash, bloqué, impossible, lenteur, panne]
+    severity: 5
+    action: Prioriser les bugs bloquants et améliorer la surveillance applicative.
+  Documentation:
+    keywords: [documentation, guide, comprendre, explication, tutoriel, aide]
+    severity: 3
+    action: Produire une documentation orientée cas d’usage métier.
+  Support:
+    keywords: [support, réponse, ticket, assistance, délai]
+    severity: 4
+    action: Mettre en place une priorisation des tickets clients stratégiques.
+
+embassy:
+  Rendez-vous:
+    keywords: [rendez-vous, créneau, disponibilité, rdv, réservation]
+    severity: 5
+    action: Améliorer la visibilité des créneaux et automatiser les notifications.
+  Délais administratifs:
+    keywords: [délai, attente, passeport, dossier, traitement, retard]
+    severity: 5
+    action: Suivre les délais par type de demande et communiquer les statuts.
+  Communication:
+    keywords: [réponse, email, téléphone, information, communication, contact]
+    severity: 4
+    action: Clarifier les canaux de contact et standardiser les réponses.
+  Procédures:
+    keywords: [procédure, document, formulaire, justificatif, consulat, dossier]
+    severity: 4
+    action: Simplifier les instructions et créer une checklist par démarche.
