@@ -4,45 +4,78 @@ import streamlit as st
 def render_backlog():
     backlog_df = st.session_state.backlog_df
 
-    st.markdown("## Prioritization Board")
-    st.caption("Backlog business généré à partir des irritants détectés dans les verbatims.")
+    st.markdown("## Moteur de priorisation")
+    st.caption(
+        "Les sujets sont classés selon leur récurrence, leur criticité, leur impact potentiel et les cas bloquants détectés."
+    )
 
     if backlog_df is None or backlog_df.empty:
-        st.warning("Aucun backlog disponible. Lancez d’abord une démo ou une analyse CSV.")
+        st.warning("Aucune priorité disponible. Lancez d’abord une démo ou importez un fichier.")
         return
 
+    high_count = int((backlog_df["priority"] == "Priorité élevée").sum())
+    watch_count = int((backlog_df["priority"] == "Sous surveillance").sum())
+    moderate_count = int((backlog_df["priority"] == "Impact modéré").sum())
+
     c1, c2, c3 = st.columns(3)
-    c1.metric("Sujets priorisés", len(backlog_df))
-    c2.metric("Priorités P0", int((backlog_df["priority"] == "P0").sum()))
-    c3.metric("Priorités P1", int((backlog_df["priority"] == "P1").sum()))
 
-    st.markdown("### Backlog priorisé")
+    c1.metric("Priorités élevées", high_count)
+    c2.metric("Sujets sous surveillance", watch_count)
+    c3.metric("Impacts modérés", moderate_count)
 
-    columns_to_show = [
+    st.markdown("---")
+
+    st.markdown("### Sujets nécessitant une décision")
+
+    for _, row in backlog_df.head(8).iterrows():
+        with st.container(border=True):
+            st.markdown(f"### {row['theme']}")
+            st.caption(row["priority"])
+
+            st.markdown("**Pourquoi ce sujet remonte**")
+            st.write(
+                f"Ce sujet apparaît dans **{row['volume']} retours**. "
+                f"Il présente un taux de retours négatifs de **{row['negative_rate']}%** "
+                f"et **{row['blocking_count']} cas bloquants**."
+            )
+
+            st.markdown("**Impact potentiel**")
+            st.write(
+                f"Impact attendu : **{row['expected_impact']}**. "
+                f"Ce sujet peut dégrader la confiance, augmenter les sollicitations support "
+                f"ou ralentir le parcours client."
+            )
+
+            st.markdown("**Action recommandée**")
+            st.write(row["recommendation"])
+
+            c1, c2, c3 = st.columns(3)
+            c1.write(f"**Effort estimé :** {row['effort']}")
+            c2.write(f"**Horizon :** {row['timeline']}")
+            c3.write(f"**Équipes :** {row['teams']}")
+
+    st.markdown("---")
+
+    st.markdown("### Vue structurée des priorités")
+
+    columns = [
         "priority",
         "theme",
         "volume",
         "negative_rate",
         "blocking_count",
-        "avg_severity",
-        "priority_score",
+        "expected_impact",
+        "effort",
+        "timeline",
+        "teams",
         "recommendation",
     ]
 
-    existing_columns = [col for col in columns_to_show if col in backlog_df.columns]
+    existing = [col for col in columns if col in backlog_df.columns]
 
     st.dataframe(
-        backlog_df[existing_columns],
+        backlog_df[existing],
         use_container_width=True,
-        height=450,
-    )
-
-    st.markdown("### Lecture business")
-
-    top = backlog_df.iloc[0]
-
-    st.info(
-        f"La priorité principale est **{top['theme']}** avec un score de priorité de "
-        f"**{round(float(top['priority_score']), 2)}**. "
-        f"Action recommandée : **{top['recommendation']}**."
+        hide_index=True,
+        height=480,
     )

@@ -1,53 +1,133 @@
 import streamlit as st
+import pandas as pd
+
+from core.exports import to_csv_bytes
 
 
 def render_reports():
-    df = st.session_state.analysis_df
+
+    analysis_df = st.session_state.analysis_df
     backlog_df = st.session_state.backlog_df
 
-    st.markdown("## Reports")
-    st.caption("Exportez les résultats d’analyse et le backlog priorisé.")
+    st.markdown(
+        """
+        <div class="page-header">
+            <div class="page-kicker">EXPORTS & PARTAGE</div>
+            <div class="page-title">Rapports</div>
+            <div class="page-description">
+                Exportez les résultats d’analyse et les recommandations
+                générées à partir des retours clients.
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    if df is None:
-        st.warning("Aucune analyse disponible.")
-        return
+    total_feedbacks = len(analysis_df)
 
-    st.markdown("### Synthèse exécutive")
+    negative_rate = round(
+        (analysis_df["sentiment"] == "negative").mean() * 100,
+        1,
+    )
 
-    total = len(df)
-    negative_rate = round(df["sentiment"].eq("Négatif").mean() * 100, 1)
-    blocking_count = int(df["is_blocking"].sum())
-    top_theme = df["theme"].value_counts().idxmax()
+    top_theme = (
+        backlog_df.iloc[0]["theme"]
+        if len(backlog_df) > 0
+        else "Aucun sujet détecté"
+    )
+
+    blocking_cases = (
+        int(backlog_df["blocking_count"].sum())
+        if "blocking_count" in backlog_df.columns
+        else 0
+    )
+
+    st.markdown("## Synthèse exécutive")
 
     st.info(
-        f"InsightIA a analysé **{total} verbatims**. "
-        f"Le taux de retours négatifs est de **{negative_rate}%**. "
-        f"Le principal irritant détecté est **{top_theme}**. "
-        f"Nombre d’incidents bloquants : **{blocking_count}**."
+        f"""
+InsightIA a analysé **{total_feedbacks} verbatims**.
+
+Le principal sujet détecté concerne :
+**{top_theme}**.
+
+Le volume de retours négatifs représente
+**{negative_rate}%** des verbatims analysés.
+
+Nombre total de cas bloquants détectés :
+**{blocking_cases}**.
+"""
     )
 
-    st.markdown("### Télécharger les résultats")
+    st.markdown("## Télécharger les résultats")
 
-    analysis_csv = df.to_csv(index=False).encode("utf-8-sig")
+    col1, col2 = st.columns(2)
 
-    st.download_button(
-        label="Télécharger l’analyse complète CSV",
-        data=analysis_csv,
-        file_name="insightia_analysis.csv",
-        mime="text/csv",
-        use_container_width=True,
-    )
-
-    if backlog_df is not None and not backlog_df.empty:
-        backlog_csv = backlog_df.to_csv(index=False).encode("utf-8-sig")
-
+    with col1:
         st.download_button(
-            label="Télécharger le backlog priorisé CSV",
-            data=backlog_csv,
-            file_name="insightia_backlog.csv",
+            label="Télécharger l’analyse complète CSV",
+            data=to_csv_bytes(analysis_df),
+            file_name="insightia_analyse_complete.csv",
             mime="text/csv",
             use_container_width=True,
         )
 
-        st.markdown("### Backlog aperçu")
-        st.dataframe(backlog_df, use_container_width=True)
+    with col2:
+        st.download_button(
+            label="Télécharger les recommandations CSV",
+            data=to_csv_bytes(backlog_df),
+            file_name="insightia_recommandations.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+
+    st.markdown("## Priorités recommandées")
+
+    display_columns = [
+        "theme",
+        "priority",
+        "expected_impact",
+        "effort",
+        "timeline",
+        "recommended_action",
+    ]
+
+    rename_columns = {
+        "theme": "Sujet",
+        "priority": "Niveau d’attention",
+        "expected_impact": "Impact attendu",
+        "effort": "Effort estimé",
+        "timeline": "Horizon conseillé",
+        "recommended_action": "Action recommandée",
+    }
+
+    available_columns = [
+        c for c in display_columns if c in backlog_df.columns
+    ]
+
+    display_df = backlog_df[available_columns].rename(
+        columns=rename_columns
+    )
+
+    st.dataframe(
+        display_df,
+        use_container_width=True,
+        hide_index=True,
+    )
+
+    st.markdown("## Lecture des résultats")
+
+    st.success(
+        """
+Les sujets affichés ci-dessus sont classés selon :
+
+- la récurrence des retours
+- le volume détecté
+- la criticité des verbatims
+- les cas bloquants identifiés
+- l’impact potentiel sur l’expérience client
+
+L’objectif n’est pas seulement d’identifier des problèmes,
+mais d’aider à prioriser les actions les plus utiles.
+"""
+    )

@@ -12,7 +12,7 @@ from ui.pages.reports import render_reports
 
 
 st.set_page_config(
-    page_title="InsightIA — Intelligence Décisionnelle Client",
+    page_title="InsightIA — Analyse des retours clients",
     page_icon="🧠",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -52,9 +52,9 @@ DEMOS = {
 
 PAGES = [
     "Accueil",
-    "Centre d’Intelligence",
-    "Frictions Opérationnelles",
-    "Moteur de Priorisation",
+    "Synthèse",
+    "Frictions détectées",
+    "Priorisation",
     "Rapports",
 ]
 
@@ -79,7 +79,7 @@ def load_analysis(df, demo_name=None):
     st.session_state.analysis_df = analysis_df
     st.session_state.backlog_df = backlog_df
     st.session_state.current_demo = demo_name
-    st.session_state.page = "Centre d’Intelligence"
+    st.session_state.page = "Synthèse"
 
     st.rerun()
 
@@ -88,21 +88,21 @@ def render_header():
     html("""
 <section class="hero-wrapper">
 <div class="hero-left">
-<div class="hero-badge">INSIGHTIA · INTELLIGENCE DÉCISIONNELLE CLIENT</div>
-<div class="hero-title">Transformez la voix du client en décisions stratégiques.</div>
-<div class="hero-subtitle">InsightIA détecte les frictions critiques, identifie les signaux faibles et transforme les verbatims clients en priorités opérationnelles actionnables.</div>
-<div class="hero-proof">Analyse explicable · Taxonomie métier · Priorisation business · Recommandations IA</div>
+<div class="hero-badge">INSIGHTIA · ANALYSE DES RETOURS CLIENTS</div>
+<div class="hero-title">Transformez les retours clients en priorités d’action.</div>
+<div class="hero-subtitle">InsightIA aide à repérer les sujets récurrents, les irritants les plus sensibles et les actions à prioriser à partir de verbatims clients.</div>
+<div class="hero-proof">Analyse structurée · Priorisation métier · Recommandations opérationnelles</div>
 </div>
 
 <div class="hero-panel">
-<div class="panel-label">Signal prioritaire détecté</div>
-<div class="panel-value">P0</div>
-<div class="panel-title">Risque de friction client élevé</div>
-<div class="panel-text">Les irritants liés à la communication et au suivi opérationnel concentrent les signaux les plus critiques.</div>
+<div class="panel-label">Point d’attention</div>
+<div class="panel-value">Prioritaire</div>
+<div class="panel-title">Sujet client nécessitant une action rapide</div>
+<div class="panel-text">Les sujets liés à la communication, au suivi ou aux délais peuvent rapidement dégrader la confiance client.</div>
 <div class="panel-divider"></div>
-<div class="panel-row"><span>Impact attendu</span><strong>Élevé</strong></div>
-<div class="panel-row"><span>Horizon d’action</span><strong>30 jours</strong></div>
-<div class="panel-row"><span>Équipes concernées</span><strong>CX · Produit · Ops</strong></div>
+<div class="panel-row"><span>Impact attendu</span><strong>Fort</strong></div>
+<div class="panel-row"><span>Horizon conseillé</span><strong>30 jours</strong></div>
+<div class="panel-row"><span>Équipes concernées</span><strong>CX · Produit · Opérations</strong></div>
 </div>
 </section>
 """)
@@ -120,31 +120,31 @@ def render_navigation():
                 go_to(page)
 
 
-def render_executive_intelligence_preview():
+def render_monitoring_preview():
     html("""
 <div class="section-header compact">
-<div class="section-kicker">INTELLIGENCE EXÉCUTIVE</div>
-<div class="section-title">Ce que la plateforme surveille</div>
-<div class="section-description">InsightIA ne se limite pas à compter des commentaires : la plateforme détecte les signaux qui méritent une décision.</div>
+<div class="section-kicker">LECTURE RAPIDE</div>
+<div class="section-title">Ce que la plateforme aide à repérer</div>
+<div class="section-description">InsightIA ne se limite pas à compter des commentaires : la plateforme aide à comprendre quels sujets reviennent, qui est concerné et quelles actions peuvent être utiles.</div>
 </div>
 
 <div class="insight-grid">
 <div class="insight-card">
-<div class="insight-badge risk">RISQUE ÉLEVÉ</div>
-<div class="insight-title">Frictions opérationnelles en hausse</div>
-<div class="insight-text">Les irritants liés au suivi, aux délais et à la communication concentrent les signaux les plus sensibles.</div>
+<div class="insight-badge risk">À TRAITER</div>
+<div class="insight-title">Frictions récurrentes</div>
+<div class="insight-text">Identifier les sujets qui reviennent régulièrement dans les retours clients et qui méritent une action concrète.</div>
 </div>
 
 <div class="insight-card">
-<div class="insight-badge signal">SIGNAL FAIBLE</div>
-<div class="insight-title">La confiance devient le vrai sujet</div>
-<div class="insight-text">Les clients tolèrent parfois l’incident, mais réagissent fortement au manque de visibilité.</div>
+<div class="insight-badge signal">À SURVEILLER</div>
+<div class="insight-title">Signaux faibles</div>
+<div class="insight-text">Repérer les problèmes encore peu volumineux mais susceptibles de prendre de l’importance.</div>
 </div>
 
 <div class="insight-card">
-<div class="insight-badge action">ACTION PRIORITAIRE</div>
-<div class="insight-title">Prioriser les parcours critiques</div>
-<div class="insight-text">Les recommandations doivent cibler les parcours où l’impact client et l’exposition business sont les plus élevés.</div>
+<div class="insight-badge action">À PRIORISER</div>
+<div class="insight-title">Actions recommandées</div>
+<div class="insight-text">Relier les irritants détectés à des actions simples, lisibles et orientées métier.</div>
 </div>
 </div>
 """)
@@ -155,7 +155,7 @@ def render_home():
 <div class="section-header">
 <div class="section-kicker">POINT DE DÉPART</div>
 <div class="section-title">Choisissez votre environnement d’analyse</div>
-<div class="section-description">Lancez une démonstration métier réaliste ou importez vos propres données pour générer une lecture décisionnelle des irritants, des risques et des priorités d’action.</div>
+<div class="section-description">Lancez une démonstration métier ou importez vos propres données pour obtenir une lecture structurée des irritants, des sujets récurrents et des priorités d’action.</div>
 </div>
 """)
 
@@ -185,7 +185,7 @@ def render_home():
 
     html("<div style='height:60px'></div>")
 
-    render_executive_intelligence_preview()
+    render_monitoring_preview()
 
     html("<div style='height:70px'></div>")
 
@@ -193,7 +193,7 @@ def render_home():
 <div class="section-header">
 <div class="section-kicker">MODE PRODUIT RÉEL</div>
 <div class="section-title">Importer des verbatims clients</div>
-<div class="section-description">Chargez des retours clients réels afin de générer une lecture décisionnelle des frictions, des risques opérationnels et des priorités business.</div>
+<div class="section-description">Chargez des retours clients réels afin d’obtenir une lecture structurée des irritants, des sujets récurrents et des actions à prioriser.</div>
 </div>
 """)
 
@@ -201,7 +201,7 @@ def render_home():
 
     st.info(
         """
-InsightIA analyse des données textuelles non structurées afin de détecter les irritants critiques, les signaux faibles, les frictions récurrentes, les parcours dégradés et les priorités opérationnelles.
+InsightIA analyse des données textuelles afin de détecter les irritants, les sujets récurrents, les parcours dégradés et les priorités d’action.
 
 Le fichier CSV doit contenir au minimum une colonne de verbatim client : `text`, `commentaire`, `feedback`, `message` ou `avis`.
 
@@ -216,27 +216,27 @@ Colonnes recommandées : `date`, `canal`, `segment_client`, `region`, `parcours_
     with c1:
         st.success(
             """
-**Détection des frictions**
+**Lecture des frictions**
 
-Irritants critiques, signaux faibles, anomalies émergentes et parcours dégradés.
+Sujets récurrents, irritants sensibles, signaux faibles et parcours dégradés.
 """
         )
 
     with c2:
         st.success(
             """
-**Priorisation décisionnelle**
+**Priorisation métier**
 
-Priorités P0 / P1 / P2, impact business, exposition client et niveau d’urgence.
+Niveaux d’attention, impact potentiel, récurrence et criticité des sujets.
 """
         )
 
     with c3:
         st.success(
             """
-**Recommandations IA**
+**Actions recommandées**
 
-Actions prioritaires, équipes concernées, effort estimé et horizon d’action.
+Actions prioritaires, équipes concernées, effort estimé et horizon conseillé.
 """
         )
 
@@ -262,10 +262,10 @@ Actions prioritaires, équipes concernées, effort estimé et horizon d’action
 
             st.markdown("### Lancer l’analyse")
             st.caption(
-                "InsightIA va standardiser les colonnes, détecter les irritants, calculer les priorités et générer une lecture décisionnelle."
+                "InsightIA va standardiser les colonnes, identifier les irritants et proposer une lecture structurée des priorités."
             )
 
-            if st.button("Lancer l’analyse personnalisée", use_container_width=True):
+            if st.button("Générer la lecture d’analyse", use_container_width=True):
                 load_analysis(df, "Import CSV")
 
         except Exception as e:
@@ -280,7 +280,7 @@ def render_page():
 <div class="empty-state">
 <div class="empty-kicker">ANALYSE NON INITIALISÉE</div>
 <div class="empty-title">Commencez par lancer une démonstration.</div>
-<div class="empty-text">Sélectionnez un environnement métier ou importez un fichier CSV pour activer le centre d’intelligence décisionnelle.</div>
+<div class="empty-text">Sélectionnez un environnement métier ou importez un fichier CSV pour activer l’analyse.</div>
 </div>
 """)
 
@@ -291,11 +291,11 @@ def render_page():
 
     if page == "Accueil":
         render_home()
-    elif page == "Centre d’Intelligence":
+    elif page == "Synthèse":
         render_executive()
-    elif page == "Frictions Opérationnelles":
+    elif page == "Frictions détectées":
         render_explorer()
-    elif page == "Moteur de Priorisation":
+    elif page == "Priorisation":
         render_backlog()
     elif page == "Rapports":
         render_reports()
