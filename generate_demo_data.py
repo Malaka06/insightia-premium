@@ -29,10 +29,10 @@ DEMOS = {
                     "colis endommagé",
                 ],
                 "comments": [
-                    "J’ai payé une livraison express pour recevoir ma commande avant un déplacement, mais le colis est arrivé avec plusieurs jours de retard. Le suivi indiquait livré alors que je n’avais rien reçu, et le transporteur n’a donné aucune explication.",
-                    "Le colis a été reporté trois fois sans information claire. J’ai dû contacter le service client moi-même pour comprendre où était ma commande, ce qui donne l’impression que personne ne pilote l’expérience après l’achat.",
-                    "Mon colis est arrivé abîmé et l’emballage était ouvert. Le problème n’est pas seulement matériel : j’ai perdu confiance dans la capacité de la marque à gérer correctement une commande importante.",
-                    "Le suivi colis changeait tous les jours entre en préparation, expédié et livré. Impossible de savoir où était réellement la commande, alors que le paiement avait déjà été encaissé.",
+                    "J’ai payé une livraison express pour recevoir ma commande avant un déplacement, mais le colis est arrivé avec plusieurs jours de retard.",
+                    "Le colis a été reporté trois fois sans information claire. J’ai dû contacter le service client moi-même pour comprendre où était ma commande.",
+                    "Mon colis est arrivé abîmé et l’emballage était ouvert. J’ai perdu confiance dans la capacité de la marque à gérer correctement une commande importante.",
+                    "Le suivi colis changeait tous les jours entre en préparation, expédié et livré. Impossible de savoir où était réellement la commande.",
                 ],
                 "impact": "perte de confiance post-achat",
             },
@@ -47,10 +47,10 @@ DEMOS = {
                     "avoir non reçu",
                 ],
                 "comments": [
-                    "Le remboursement devait être effectué sous quelques jours, mais après deux semaines je n’ai toujours rien reçu. Le support me répond que la demande est en cours sans me donner de délai concret.",
-                    "J’ai été prélevé deux fois pour la même commande. La facture ne permet pas de comprendre ce qui a été payé, remboursé ou encore en attente.",
-                    "Le montant remboursé ne correspond pas au montant validé lors du retour. J’ai l’impression de devoir prouver moi-même une erreur qui devrait être visible dans votre système.",
-                    "J’ai reçu un avoir au lieu d’un remboursement alors que j’avais demandé un remboursement bancaire. Cette décision n’a jamais été clairement expliquée.",
+                    "Le remboursement devait être effectué sous quelques jours, mais après deux semaines je n’ai toujours rien reçu.",
+                    "J’ai été prélevé deux fois pour la même commande. La facture ne permet pas de comprendre ce qui a été payé ou remboursé.",
+                    "Le montant remboursé ne correspond pas au montant validé lors du retour.",
+                    "J’ai reçu un avoir au lieu d’un remboursement alors que j’avais demandé un remboursement bancaire.",
                 ],
                 "impact": "friction financière et perte de crédibilité",
             },
@@ -65,10 +65,10 @@ DEMOS = {
                     "délai de réponse long",
                 ],
                 "comments": [
-                    "J’ai contacté le support trois fois et j’ai reçu trois réponses différentes. Personne ne semble avoir l’historique complet de mon dossier.",
-                    "Le service client répond avec des messages automatiques qui ne traitent pas mon problème. Je dois répéter la même situation à chaque échange.",
-                    "J’ai ouvert une demande urgente mais je n’ai reçu aucune réponse utile pendant plusieurs jours. Pour un client premium, ce niveau de suivi n’est pas acceptable.",
-                    "L’agent était poli, mais il n’avait pas la capacité de résoudre le problème. La demande a été transférée sans date de retour.",
+                    "J’ai contacté le support trois fois et j’ai reçu trois réponses différentes.",
+                    "Le service client répond avec des messages automatiques qui ne traitent pas mon problème.",
+                    "J’ai ouvert une demande urgente mais je n’ai reçu aucune réponse utile pendant plusieurs jours.",
+                    "L’agent était poli, mais il n’avait pas la capacité de résoudre le problème.",
                 ],
                 "impact": "augmentation des relances et baisse satisfaction",
             },
@@ -83,10 +83,10 @@ DEMOS = {
                     "emballage insuffisant",
                 ],
                 "comments": [
-                    "Le produit reçu ne correspond pas aux photos du site. La qualité perçue est nettement inférieure à ce qui était présenté.",
-                    "Il manque une pièce essentielle dans le colis, donc je ne peux pas utiliser le produit. Le retour prend du temps alors que l’erreur vient de la préparation.",
+                    "Le produit reçu ne correspond pas aux photos du site.",
+                    "Il manque une pièce essentielle dans le colis, donc je ne peux pas utiliser le produit.",
                     "Le produit fonctionne, mais l’emballage était insuffisant et plusieurs éléments étaient rayés à l’arrivée.",
-                    "J’ai reçu une mauvaise taille malgré une commande correctement validée. Le processus de retour est trop lourd pour une erreur qui ne vient pas de moi.",
+                    "J’ai reçu une mauvaise taille malgré une commande correctement validée.",
                 ],
                 "impact": "dégradation de la promesse produit",
             },
@@ -102,9 +102,9 @@ DEMOS = {
                 ],
                 "comments": [
                     "Les emails de suivi ne sont pas clairs. Je ne sais pas si ma commande est en préparation, expédiée ou bloquée.",
-                    "Le site indique une chose, le transporteur une autre, et le support encore une autre. Cette contradiction rend l’expérience très frustrante.",
-                    "Je n’ai reçu aucune notification proactive alors que ma commande était en retard. J’ai découvert le problème uniquement en allant vérifier moi-même.",
-                    "Les informations sur les délais sont trop générales. Pour une commande importante, j’ai besoin d’un vrai niveau de visibilité.",
+                    "Le site indique une chose, le transporteur une autre, et le support encore une autre.",
+                    "Je n’ai reçu aucune notification proactive alors que ma commande était en retard.",
+                    "Les informations sur les délais sont trop générales.",
                 ],
                 "impact": "manque de visibilité client",
             },
@@ -130,10 +130,10 @@ DEMOS = {
                     "première valeur trop tardive",
                 ],
                 "comments": [
-                    "L’onboarding est trop long. Notre équipe n’a pas compris quelles étapes étaient indispensables pour activer réellement le produit.",
-                    "La configuration initiale demande trop d’allers-retours avec le support. Nous avons perdu plusieurs jours avant d’obtenir un premier résultat utile.",
-                    "Les nouveaux utilisateurs se perdent dans l’interface dès la première connexion. Le produit est puissant, mais la première expérience est trop complexe.",
-                    "Nous ne savons pas quoi faire après la création du compte. Il manque un chemin clair pour atteindre rapidement la première valeur.",
+                    "L’onboarding est trop long. Notre équipe n’a pas compris quelles étapes étaient indispensables.",
+                    "La configuration initiale demande trop d’allers-retours avec le support.",
+                    "Les nouveaux utilisateurs se perdent dans l’interface dès la première connexion.",
+                    "Nous ne savons pas quoi faire après la création du compte.",
                 ],
                 "impact": "risque de non-adoption et churn précoce",
             },
@@ -148,10 +148,10 @@ DEMOS = {
                     "perte de données",
                 ],
                 "comments": [
-                    "Un bug bloque l’export des données au moment où nous devons préparer notre reporting mensuel. Cela crée un risque opérationnel important.",
-                    "Le tableau de bord met trop de temps à charger dès que le volume de données augmente. Les équipes finissent par exporter les données ailleurs.",
-                    "Certaines métriques changent sans explication entre deux connexions. Cela réduit la confiance dans les chiffres affichés.",
-                    "L’API retourne parfois des erreurs sans message clair. Nos équipes techniques perdent du temps à identifier la cause.",
+                    "Un bug bloque l’export des données au moment où nous devons préparer notre reporting mensuel.",
+                    "Le tableau de bord met trop de temps à charger dès que le volume de données augmente.",
+                    "Certaines métriques changent sans explication entre deux connexions.",
+                    "L’API retourne parfois des erreurs sans message clair.",
                 ],
                 "impact": "perte de confiance dans la donnée produit",
             },
@@ -166,10 +166,10 @@ DEMOS = {
                     "absence de délai",
                 ],
                 "comments": [
-                    "Le support répond trop tard pour un incident bloquant en production. Nous avons besoin d’un vrai niveau de priorité selon la criticité.",
+                    "Le support répond trop tard pour un incident bloquant en production.",
                     "Nous avons reçu une réponse générique alors que le ticket contenait des captures et des logs détaillés.",
-                    "Le suivi du ticket manque de clarté. Personne ne donne de délai, et nous devons relancer pour savoir si le problème avance.",
-                    "L’escalade vers une personne technique prend trop de temps. Le premier niveau de support ne suffit pas pour nos cas avancés.",
+                    "Le suivi du ticket manque de clarté. Personne ne donne de délai.",
+                    "L’escalade vers une personne technique prend trop de temps.",
                 ],
                 "impact": "risque contractuel et insatisfaction compte clé",
             },
@@ -184,10 +184,10 @@ DEMOS = {
                     "statut incident peu visible",
                 ],
                 "comments": [
-                    "Les changements de fonctionnalités ne sont pas suffisamment annoncés. Nos utilisateurs découvrent les modifications directement dans l’interface.",
-                    "La documentation ne montre pas clairement les impacts des nouveaux paramètres. Nous avons peur de modifier la configuration.",
-                    "Lorsqu’un incident est en cours, le statut n’est pas assez visible. Nous devons contacter le support pour savoir si le problème est connu.",
-                    "La roadmap manque de clarté. Pour renouveler, nous avons besoin de comprendre les évolutions prévues.",
+                    "Les changements de fonctionnalités ne sont pas suffisamment annoncés.",
+                    "La documentation ne montre pas clairement les impacts des nouveaux paramètres.",
+                    "Lorsqu’un incident est en cours, le statut n’est pas assez visible.",
+                    "La roadmap manque de clarté.",
                 ],
                 "impact": "manque de prévisibilité pour les clients B2B",
             },
@@ -202,10 +202,10 @@ DEMOS = {
                     "renouvellement mal anticipé",
                 ],
                 "comments": [
-                    "La tarification est difficile à comprendre pour les options avancées. Nous ne savons pas ce qui est inclus ou facturé séparément.",
-                    "La facture mensuelle ne détaille pas assez les modules activés. Cela complique la validation interne.",
+                    "La tarification est difficile à comprendre pour les options avancées.",
+                    "La facture mensuelle ne détaille pas assez les modules activés.",
                     "Le coût par utilisateur devient difficile à anticiper quand plusieurs équipes rejoignent la plateforme.",
-                    "Le renouvellement annuel arrive sans synthèse claire de l’usage réel et de la valeur obtenue.",
+                    "Le renouvellement annuel arrive sans synthèse claire de l’usage réel.",
                 ],
                 "impact": "frein au renouvellement et à l’expansion",
             },
@@ -231,10 +231,10 @@ DEMOS = {
                     "documents demandés contradictoires",
                 ],
                 "comments": [
-                    "Je n’arrive pas à obtenir un rendez-vous pour le renouvellement de mon passeport. Les créneaux semblent toujours indisponibles et aucune alternative n’est proposée.",
-                    "Mon dossier est complet, mais je n’ai reçu aucun suivi depuis plusieurs semaines. Je ne sais pas s’il est traité, bloqué ou simplement en attente.",
-                    "La procédure indiquée sur le site ne correspond pas aux documents demandés sur place. Cela oblige les usagers à revenir plusieurs fois.",
-                    "Le délai de traitement bloque mon voyage alors que la situation est urgente. Je n’ai aucun moyen clair de connaître l’état réel du dossier.",
+                    "Je n’arrive pas à obtenir un rendez-vous pour le renouvellement de mon passeport.",
+                    "Mon dossier est complet, mais je n’ai reçu aucun suivi depuis plusieurs semaines.",
+                    "La procédure indiquée sur le site ne correspond pas aux documents demandés sur place.",
+                    "Le délai de traitement bloque mon voyage alors que la situation est urgente.",
                 ],
                 "impact": "perte de confiance citoyenne et saturation des demandes",
             },
@@ -249,10 +249,10 @@ DEMOS = {
                     "absence de notification",
                 ],
                 "comments": [
-                    "J’ai envoyé plusieurs emails mais je n’ai pas reçu de réponse claire. Je ne sais pas si ma demande a été prise en compte.",
-                    "Les informations sur le visa sont difficiles à comprendre et changent selon l’interlocuteur. Cela crée beaucoup d’incertitude.",
-                    "Le téléphone sonne longtemps sans réponse. Quand on vit loin, il est difficile de se déplacer simplement pour obtenir une information.",
-                    "Aucune notification n’est envoyée pour expliquer l’avancement du dossier. Les citoyens doivent relancer sans savoir à qui s’adresser.",
+                    "J’ai envoyé plusieurs emails mais je n’ai pas reçu de réponse claire.",
+                    "Les informations sur le visa sont difficiles à comprendre et changent selon l’interlocuteur.",
+                    "Le téléphone sonne longtemps sans réponse.",
+                    "Aucune notification n’est envoyée pour expliquer l’avancement du dossier.",
                 ],
                 "impact": "augmentation des relances et incompréhension des procédures",
             },
@@ -267,10 +267,10 @@ DEMOS = {
                     "expérience stressante",
                 ],
                 "comments": [
-                    "L’accueil est poli, mais personne ne peut me donner un délai précis. Je repars avec plus de questions qu’en arrivant.",
-                    "Je dois répéter ma situation à chaque contact car il n’y a pas de suivi visible entre les échanges.",
-                    "On m’a demandé de revenir avec un document qui n’était pas mentionné avant. Cela crée des déplacements inutiles.",
-                    "La situation est stressante car mon dossier concerne une urgence familiale, mais je n’ai aucun canal prioritaire.",
+                    "L’accueil est poli, mais personne ne peut me donner un délai précis.",
+                    "Je dois répéter ma situation à chaque contact.",
+                    "On m’a demandé de revenir avec un document qui n’était pas mentionné avant.",
+                    "La situation est stressante car mon dossier concerne une urgence familiale.",
                 ],
                 "impact": "expérience usager dégradée",
             },
@@ -285,10 +285,10 @@ DEMOS = {
                     "mode paiement limité",
                 ],
                 "comments": [
-                    "Les frais consulaires ne sont pas expliqués clairement avant le dépôt du dossier. On découvre certains montants trop tard.",
-                    "Je ne comprends pas pourquoi un paiement supplémentaire est demandé alors que le dossier semblait complet.",
-                    "Le reçu n’indique pas clairement à quelle démarche correspond le paiement. C’est difficile à justifier ensuite.",
-                    "Les modes de paiement disponibles ne sont pas assez pratiques pour les personnes qui viennent de loin.",
+                    "Les frais consulaires ne sont pas expliqués clairement avant le dépôt du dossier.",
+                    "Je ne comprends pas pourquoi un paiement supplémentaire est demandé.",
+                    "Le reçu n’indique pas clairement à quelle démarche correspond le paiement.",
+                    "Les modes de paiement disponibles ne sont pas assez pratiques.",
                 ],
                 "impact": "friction administrative et manque de transparence",
             },
@@ -303,10 +303,10 @@ DEMOS = {
                     "manque de confirmation automatique",
                 ],
                 "comments": [
-                    "Un espace en ligne pour suivre l’état du dossier éviterait beaucoup de relances et de déplacements.",
+                    "Un espace en ligne pour suivre l’état du dossier éviterait beaucoup de relances.",
                     "Après avoir rempli le formulaire, je ne reçois pas de confirmation claire avec un numéro de suivi.",
-                    "Il serait utile de pouvoir téléverser les documents avant le rendez-vous pour éviter les dossiers incomplets.",
-                    "Le formulaire de contact est trop limité et ne permet pas d’expliquer correctement les situations urgentes.",
+                    "Il serait utile de pouvoir téléverser les documents avant le rendez-vous.",
+                    "Le formulaire de contact est trop limité pour expliquer correctement les situations urgentes.",
                 ],
                 "impact": "opportunité de modernisation du service public",
             },
@@ -320,6 +320,9 @@ POSITIVE_COMMENTS = [
     "L’expérience s’est bien passée. Les informations étaient compréhensibles et le suivi était correct.",
     "Le problème a été résolu rapidement après mon contact avec le support.",
     "J’ai apprécié la clarté des informations et le professionnalisme de l’équipe.",
+    "merci au support cette fois, problème réglé rapidement",
+    "super expérience, rien à signaler",
+    "réponse rapide et claire",
 ]
 
 NEUTRAL_COMMENTS = [
@@ -327,8 +330,56 @@ NEUTRAL_COMMENTS = [
     "L’expérience est correcte, mais il manque un suivi plus visible.",
     "Je n’ai pas rencontré de blocage majeur, mais la communication pourrait être améliorée.",
     "La procédure est faisable, mais elle demande beaucoup d’attention pour éviter une erreur.",
+    "bof, ça marche mais ce n’est pas très clair",
+    "pas bloqué mais pas fluide non plus",
+    "à revoir, surtout les explications",
 ]
 
+SHORT_COMMENTS = [
+    "toujours rien reçu",
+    "support impossible",
+    "très déçu",
+    "ça bug encore",
+    "aucune réponse",
+    "franchement abusé",
+    "super cette fois",
+    "nul",
+    "bof",
+    "service lent",
+    "bloqué depuis hier",
+    "merci au support",
+    "jattend toujours",
+    "impossible de suivre le dossier",
+    "ça devient pénible",
+    "retard encore",
+    "personne répond",
+    "très long",
+    "vraiment compliqué",
+    "je comprends pas",
+    "service catastrophique",
+    "pas normal",
+    "aucune visibilité",
+    "toujours le même problème",
+]
+
+MESSY_COMMENTS = [
+    "jattend depuis 2 semaine",
+    "personne repond",
+    "toujours aucun remboursement",
+    "je comprend pas le suivi",
+    "ca marche pas",
+    "bloqué encore",
+    "aucun retour depuis des jours",
+    "commande jamais recu",
+    "toujours rien...",
+    "tjr aucun suivi",
+    "trop lent franchement",
+    "impossible de payer",
+    "support repond a coté",
+    "jai deja relancé 3 fois",
+    "on m’a dit d’attendre mais rien bouge",
+    "c’est pas clair du tout",
+]
 
 CONSEQUENCES = [
     "Cela m’a obligé à relancer plusieurs fois.",
@@ -338,7 +389,6 @@ CONSEQUENCES = [
     "Cela donne l’impression que le suivi n’est pas maîtrisé.",
     "Cela peut pousser un client à ne pas revenir.",
 ]
-
 
 URGENCY_WORDS = [
     "urgent",
@@ -391,7 +441,21 @@ def urgency_from_comment(comment):
 
 def is_blocking(comment):
     text = comment.lower()
-    return any(word in text for word in ["bloque", "bloquant", "impossible", "urgent", "aucun moyen", "production"])
+    return any(
+        word in text
+        for word in [
+            "bloque",
+            "bloquant",
+            "impossible",
+            "urgent",
+            "aucun moyen",
+            "production",
+            "aucune réponse",
+            "aucun retour",
+            "jamais recu",
+            "jamais reçu",
+        ]
+    )
 
 
 def enrich_comment(base, segment, region, product, journey):
@@ -406,6 +470,42 @@ def enrich_comment(base, segment, region, product, journey):
     return base + random.choice(additions)
 
 
+def build_comment(sentiment, issue, segment, region, product, journey):
+    if sentiment == "positive":
+        return random.choice(POSITIVE_COMMENTS)
+
+    if sentiment == "neutral":
+        return random.choices(
+            [
+                random.choice(NEUTRAL_COMMENTS),
+                random.choice(SHORT_COMMENTS),
+            ],
+            weights=[80, 20],
+            k=1,
+        )[0]
+
+    comment = random.choices(
+        [
+            random.choice(issue["comments"]),
+            random.choice(SHORT_COMMENTS),
+            random.choice(MESSY_COMMENTS),
+        ],
+        weights=[70, 20, 10],
+        k=1,
+    )[0]
+
+    if len(comment) > 40:
+        comment = enrich_comment(
+            comment,
+            segment,
+            region,
+            product,
+            journey,
+        )
+
+    return comment
+
+
 def generate_dataset(name):
     config = DEMOS[name]
     rows = []
@@ -417,8 +517,8 @@ def generate_dataset(name):
         product = random.choice(config["products"])
         journey = random.choice(config["journeys"])
 
-        # Pics temporels : plus de problèmes sur certaines périodes
         base_date = pd.Timestamp("2025-01-01")
+
         if name == "ecommerce":
             day = random.choices(
                 range(0, 420),
@@ -450,22 +550,23 @@ def generate_dataset(name):
             theme = "Expérience positive"
             subtheme = "service satisfaisant"
             irritant = "aucun irritant majeur"
-            comment = random.choice(POSITIVE_COMMENTS)
             impact = "satisfaction et confiance"
+            comment = build_comment(sentiment, None, segment, region, product, journey)
+
         elif sentiment == "neutral":
             theme = "Communication"
             subtheme = "amélioration souhaitée"
             irritant = "manque de clarté partiel"
-            comment = random.choice(NEUTRAL_COMMENTS)
             impact = "friction légère"
+            comment = build_comment(sentiment, None, segment, region, product, journey)
+
         else:
             issue = choose_issue(config["issues"])
             theme = issue["theme"]
             subtheme = random.choice(issue["subthemes"])
             irritant = subtheme
-            comment = random.choice(issue["comments"])
-            comment = enrich_comment(comment, segment, region, product, journey)
             impact = issue["impact"]
+            comment = build_comment(sentiment, issue, segment, region, product, journey)
 
         score = score_from_comment(comment, sentiment)
         urgency = urgency_from_comment(comment)
@@ -498,6 +599,7 @@ def generate_dataset(name):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     df.to_csv(output_dir / "feedbacks.csv", index=False, encoding="utf-8-sig")
+
     print(f"{name}: {len(df)} lignes générées")
 
 
