@@ -1,3 +1,5 @@
+# ui/pages/backlog.py
+
 import streamlit as st
 
 
@@ -5,6 +7,7 @@ def render_backlog():
     backlog_df = st.session_state.backlog_df
 
     st.markdown("## Moteur de priorisation")
+
     st.caption(
         "Les sujets sont classés selon leur récurrence, leur criticité, leur impact potentiel et les cas bloquants détectés."
     )
@@ -29,17 +32,36 @@ def render_backlog():
 
     for _, row in backlog_df.head(8).iterrows():
         with st.container(border=True):
+
             st.markdown(f"### {row['theme']}")
+
             st.caption(row["priority"])
 
             st.markdown("**Pourquoi ce sujet remonte**")
+
             st.write(
                 f"Ce sujet apparaît dans **{row['volume']} retours**. "
                 f"Il présente un taux de retours négatifs de **{row['negative_rate']}%** "
                 f"et **{row['blocking_count']} cas bloquants**."
             )
 
+            priority_reasons = []
+
+            if row["volume"] > 200:
+                priority_reasons.append("volume élevé")
+
+            if row["negative_rate"] > 60:
+                priority_reasons.append("forte négativité")
+
+            if row["blocking_count"] > 20:
+                priority_reasons.append("nombre important de cas bloquants")
+
+            st.markdown("**Pourquoi ce sujet est prioritaire**")
+
+            st.info(" • ".join(priority_reasons))
+
             st.markdown("**Impact potentiel**")
+
             st.write(
                 f"Impact attendu : **{row['expected_impact']}**. "
                 f"Ce sujet peut dégrader la confiance, augmenter les sollicitations support "
@@ -47,35 +69,11 @@ def render_backlog():
             )
 
             st.markdown("**Action recommandée**")
+
             st.write(row["recommendation"])
 
             c1, c2, c3 = st.columns(3)
+
             c1.write(f"**Effort estimé :** {row['effort']}")
             c2.write(f"**Horizon :** {row['timeline']}")
             c3.write(f"**Équipes :** {row['teams']}")
-
-    st.markdown("---")
-
-    st.markdown("### Vue structurée des priorités")
-
-    columns = [
-        "priority",
-        "theme",
-        "volume",
-        "negative_rate",
-        "blocking_count",
-        "expected_impact",
-        "effort",
-        "timeline",
-        "teams",
-        "recommendation",
-    ]
-
-    existing = [col for col in columns if col in backlog_df.columns]
-
-    st.dataframe(
-        backlog_df[existing],
-        use_container_width=True,
-        hide_index=True,
-        height=480,
-    )

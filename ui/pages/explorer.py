@@ -1,6 +1,5 @@
-# ui/pages/explorer.py
-
 import streamlit as st
+import pandas as pd
 
 
 def _safe_options(df, column):
@@ -96,90 +95,27 @@ Les remontées concernent principalement le segment **{dominant_segment}** et pr
 
     st.markdown("---")
 
-    st.markdown("### Sujets les plus remontés")
-
-    grouped = (
+    analytics_table = (
         filtered.groupby("theme")
-        .size()
-        .reset_index(name="Occurrences")
-        .sort_values("Occurrences", ascending=False)
+        .agg({
+            "text": "count",
+            "segment_client": lambda x: x.mode()[0] if not x.mode().empty else "N/A",
+            "channel": lambda x: x.mode()[0] if not x.mode().empty else "N/A",
+        })
+        .reset_index()
     )
 
-    for _, row in grouped.head(6).iterrows():
-
-        subset = filtered[
-            filtered["theme"] == row["theme"]
-        ]
-
-        top_irritant = _top_value(
-            subset,
-            "irritant",
-            row["theme"],
-        )
-
-        with st.container(border=True):
-
-            st.markdown(f"#### {row['theme']}")
-
-            st.write(
-                f"**Sujet récurrent :** {top_irritant}"
-            )
-
-            st.write(
-                f"**Volume observé :** {row['Occurrences']} retours"
-            )
-
-            st.write(
-                "Ce sujet apparaît de manière répétée dans les verbatims analysés."
-            )
-
-    st.markdown("---")
-
-    st.markdown("### Expressions fréquemment retrouvées")
-
-    if "irritant" in filtered.columns:
-
-        recurring = (
-            filtered["irritant"]
-            .dropna()
-            .astype(str)
-            .value_counts()
-            .head(12)
-            .reset_index()
-        )
-
-        recurring.columns = [
-            "Expression détectée",
-            "Occurrences",
-        ]
-
-        st.dataframe(
-            recurring,
-            use_container_width=True,
-            hide_index=True,
-        )
-
-    st.markdown("---")
-
-    st.markdown("### Aperçu des retours analysés")
-
-    columns = [
-        "date",
-        "segment_client",
-        "channel",
-        "theme",
-        "irritant",
-        "text",
+    analytics_table.columns = [
+        "Sujet",
+        "Volume",
+        "Segment dominant",
+        "Canal dominant",
     ]
 
-    existing = [
-        col for col in columns
-        if col in filtered.columns
-    ]
+    st.markdown("### Vue analytique")
 
     st.dataframe(
-        filtered[existing].head(250),
+        analytics_table,
         use_container_width=True,
         hide_index=True,
-        height=520,
     )

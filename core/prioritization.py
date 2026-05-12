@@ -34,19 +34,19 @@ TEAMS = {
 
 
 def priority_label(score: float) -> str:
-    if score >= 70:
-        return "Priorité élevée"
     if score >= 45:
+        return "Priorité élevée"
+    if score >= 28:
         return "Sous surveillance"
     return "Impact modéré"
 
 
 def expected_impact(score: float) -> str:
-    if score >= 70:
-        return "Élevé"
     if score >= 45:
+        return "Élevé"
+    if score >= 28:
         return "Moyen"
-    return "Modéré"
+    return "Faible à modéré"
 
 
 def effort_level(theme: str) -> str:
@@ -58,11 +58,11 @@ def effort_level(theme: str) -> str:
 
 
 def action_horizon(score: float) -> str:
-    if score >= 70:
-        return "30 jours"
     if score >= 45:
+        return "7 à 30 jours"
+    if score >= 28:
         return "30 à 60 jours"
-    return "À suivre"
+    return "Surveillance continue"
 
 
 def build_backlog(df: pd.DataFrame) -> pd.DataFrame:
@@ -76,26 +76,35 @@ def build_backlog(df: pd.DataFrame) -> pd.DataFrame:
         volume = len(group)
         recurrence_score = (volume / total) * 100
 
-        negative_rate = (
-            group["sentiment"].eq("Négatif").mean() * 100
-            if "sentiment" in group.columns
-            else 0
-        )
+        if "sentiment" in group.columns:
+            negative_rate = (
+                group["sentiment"]
+                .astype(str)
+                .str.lower()
+                .str.contains("négatif|negatif|negative", regex=True)
+                .mean()
+                * 100
+            )
+        else:
+            negative_rate = 0
 
-        blocking_count = int(group["is_blocking"].sum()) if "is_blocking" in group.columns else 0
+        if "is_blocking" in group.columns:
+            blocking_count = int(group["is_blocking"].fillna(False).sum())
+        else:
+            blocking_count = 0
+
         blocking_rate = (blocking_count / max(1, volume)) * 100
 
-        avg_severity = (
-            float(group["severity_score"].mean())
-            if "severity_score" in group.columns
-            else 1
-        )
+        if "severity_score" in group.columns:
+            avg_severity = float(group["severity_score"].mean())
+        else:
+            avg_severity = 1
 
         priority_score = (
-            recurrence_score * 0.35
+            recurrence_score * 0.45
             + negative_rate * 0.30
-            + blocking_rate * 0.20
-            + avg_severity * 10 * 0.15
+            + blocking_rate * 0.15
+            + avg_severity * 12
         )
 
         priority_score = round(priority_score, 2)
@@ -104,8 +113,10 @@ def build_backlog(df: pd.DataFrame) -> pd.DataFrame:
             {
                 "theme": theme,
                 "volume": volume,
+                "recurrence_score": round(recurrence_score, 1),
                 "negative_rate": round(negative_rate, 1),
                 "blocking_count": blocking_count,
+                "blocking_rate": round(blocking_rate, 1),
                 "avg_severity": round(avg_severity, 2),
                 "priority_score": priority_score,
                 "priority": priority_label(priority_score),

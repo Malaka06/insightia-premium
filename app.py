@@ -9,6 +9,8 @@ from ui.pages.executive import render_executive
 from ui.pages.explorer import render_explorer
 from ui.pages.backlog import render_backlog
 from ui.pages.reports import render_reports
+from ui.pages.methodology import render_methodology
+from ui.pages.trends import render_trends
 
 
 st.set_page_config(
@@ -56,6 +58,8 @@ PAGES = [
     "Frictions détectées",
     "Priorisation",
     "Rapports",
+    "Méthodologie",
+    "Tendances",
 ]
 
 
@@ -275,7 +279,7 @@ Actions prioritaires, équipes concernées, effort estimé et horizon conseillé
 def render_page():
     page = st.session_state.page
 
-    if page != "Accueil" and st.session_state.analysis_df is None:
+    if page != "Accueil" and page != "Méthodologie" and st.session_state.analysis_df is None:
         html("""
 <div class="empty-state">
 <div class="empty-kicker">ANALYSE NON INITIALISÉE</div>
@@ -291,14 +295,24 @@ def render_page():
 
     if page == "Accueil":
         render_home()
+
     elif page == "Synthèse":
         render_executive()
+
     elif page == "Frictions détectées":
         render_explorer()
+
     elif page == "Priorisation":
         render_backlog()
+
     elif page == "Rapports":
         render_reports()
+
+    elif page == "Méthodologie":
+        render_methodology()
+
+    elif page == "Tendances":
+        render_trends()
 
 
 def main():

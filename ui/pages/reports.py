@@ -5,7 +5,6 @@ from core.exports import to_csv_bytes
 
 
 def render_reports():
-
     analysis_df = st.session_state.analysis_df
     backlog_df = st.session_state.backlog_df
 
@@ -26,19 +25,24 @@ def render_reports():
     total_feedbacks = len(analysis_df)
 
     negative_rate = round(
-        (analysis_df["sentiment"] == "negative").mean() * 100,
+        analysis_df["sentiment"]
+        .astype(str)
+        .str.lower()
+        .str.contains("négatif|negatif|negative", regex=True)
+        .mean()
+        * 100,
         1,
     )
 
     top_theme = (
         backlog_df.iloc[0]["theme"]
-        if len(backlog_df) > 0
+        if backlog_df is not None and len(backlog_df) > 0
         else "Aucun sujet détecté"
     )
 
     blocking_cases = (
         int(backlog_df["blocking_count"].sum())
-        if "blocking_count" in backlog_df.columns
+        if backlog_df is not None and "blocking_count" in backlog_df.columns
         else 0
     )
 
@@ -86,23 +90,34 @@ Nombre total de cas bloquants détectés :
     display_columns = [
         "theme",
         "priority",
+        "priority_score",
+        "recurrence_score",
+        "negative_rate",
+        "blocking_count",
         "expected_impact",
         "effort",
         "timeline",
-        "recommended_action",
+        "teams",
+        "recommendation",
     ]
 
     rename_columns = {
         "theme": "Sujet",
         "priority": "Niveau d’attention",
+        "priority_score": "Score de priorité",
+        "recurrence_score": "Récurrence",
+        "negative_rate": "Taux négatif",
+        "blocking_count": "Cas bloquants",
         "expected_impact": "Impact attendu",
         "effort": "Effort estimé",
         "timeline": "Horizon conseillé",
-        "recommended_action": "Action recommandée",
+        "teams": "Équipes concernées",
+        "recommendation": "Action recommandée",
     }
 
     available_columns = [
-        c for c in display_columns if c in backlog_df.columns
+        col for col in display_columns
+        if col in backlog_df.columns
     ]
 
     display_df = backlog_df[available_columns].rename(
@@ -115,19 +130,19 @@ Nombre total de cas bloquants détectés :
         hide_index=True,
     )
 
-    st.markdown("## Lecture des résultats")
+    st.markdown("## Méthodologie de lecture")
 
     st.success(
         """
-Les sujets affichés ci-dessus sont classés selon :
+Les sujets sont classés selon une logique de priorisation combinant :
 
-- la récurrence des retours
-- le volume détecté
-- la criticité des verbatims
-- les cas bloquants identifiés
-- l’impact potentiel sur l’expérience client
+- la récurrence du sujet dans les retours analysés
+- le taux de retours négatifs
+- le nombre de cas bloquants détectés
+- le niveau moyen de criticité
+- l’impact potentiel sur le parcours client
 
 L’objectif n’est pas seulement d’identifier des problèmes,
-mais d’aider à prioriser les actions les plus utiles.
+mais de transformer les verbatims clients en priorités d’action.
 """
     )
